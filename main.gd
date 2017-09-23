@@ -6,21 +6,17 @@ var elapsed = 0
 
 func _ready():
 	# Initalization here
-	set_process(true)
+	set_fixed_process(true)
 	addBunny(10)
-	pass
 
-
-
-func _process(delta):
+func _fixed_process(delta):
 	if Input.is_action_pressed('mouse_down'):
 		addBunny(10)
 		
 	elapsed = elapsed + delta
-	
 	# Update fps text once per second
 	if elapsed > 1:
-		var fps = OS.get_frames_per_second()
+		var fps = Engine.get_frames_per_second()
 		get_node("fps").set_text("FPS: " + str(fps))
 		
 		get_node("fps").set_as_toplevel(1)

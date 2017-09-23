@@ -1,43 +1,36 @@
-
 extends Sprite
-
-var vx = randi() % 200 + 50
-var vy = randi() % 200 + 50
-var ay = 980
+var velocity_x = 0
+var velocity_y = 0
+var gravity = 9.8
+var max_x = 640
+var min_x = 0
+var max_y = 480
+var min_y = 0
 
 func _ready():
-	set_process(true)
-	
-	var pos = get_pos()
-	pos.x = 50
-	pos.y = 50
-	set_pos(pos)
-
-
-func _process(delta):
-	var pos = get_pos()
-	
-	pos.x = pos.x + vx * delta
-	pos.y = pos.y + vy * delta
-	
-	vy = vy + ay * delta
-	
-	if pos.x > 800:
-		vx = -vx
-		pos.x = 800
-		
-	if pos.x < 0:
-		vx = abs(vx)
-		pos.x = 0
-		
-	if pos.y > 600:
-		vy = -0.85 * vy
-		pos.y = 600
-		if randf() > 0.5:
-			vy = -(randi() % 1100 + 50)
-		
-	if pos.y < 0:
-		vy = 0
-		pos.y = 0
-	
-	set_pos(pos)
+    velocity_x= randf() * 10
+    velocity_y = rand_range(5, 10)
+    set_fixed_process(true)
+    
+func _fixed_process(delta):
+    var pos = get_position()
+    var pos_x = pos.x
+    var pos_y = pos.y
+    pos_x += velocity_x
+    pos_y += velocity_y
+    velocity_y += gravity
+    if (pos_x > max_x):
+        velocity_x*= -1
+        pos_x = max_x
+    elif (pos_x < min_x):
+        velocity_x*= -1
+        pos_x = min_x
+    if (pos_y > max_y):
+        velocity_y *= -0.8
+        pos_y = max_y
+        if (randf() > 0.5):
+            velocity_y -= randf() * 12;
+    elif (pos_y < min_y):
+        velocity_y = 0
+        pos_y = min_y
+    set_position(Vector2(pos_x, pos_y))
