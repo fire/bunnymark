@@ -1,5 +1,7 @@
 # BunnyMark
 
+Uses: https://github.com/godotengine/godot/issues/9506
+
 This is a fork of https://github.com/jotson/godot-bunnymark for Godot 3.0.
 
 This is the classic BunnyMark benchmark for Godot Engine.
