@@ -1,5 +1,7 @@
 # BunnyMark
 
+This is a fork of https://github.com/jotson/godot-bunnymark for Godot 3.0.
+
 This is the classic BunnyMark benchmark for Godot Engine.
 
 This is basically a port of the [Pixi.js version](http://www.goodboydigital.com/pixijs/bunnymark/). I'm new to Godot so send pull requests with performance improvements.
